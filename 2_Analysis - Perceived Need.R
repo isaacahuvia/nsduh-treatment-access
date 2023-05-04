@@ -29,9 +29,16 @@ design_perceived_need <- svydesign(ids = ~ 1,
 
 
 ####  Analysis  ####
+## Perceived need for the population
+svymean(~ perceived_need, design = design_perceived_need) %>%
+  as.data.frame() %>%
+  mutate(lower = mean - (SE * 1.96),
+         upper = mean + (SE * 1.96)) %>%
+  round(3)
+
 ## Perceived need by race alone
 # Table
-svyby(~perceived_need, by = ~ race, design = design_perceived_need, FUN = svymean, na.rm = T) %>%
+svyby(~ perceived_need, by = ~ race, design = design_perceived_need, FUN = svymean, na.rm = T) %>%
   mutate(est = paste0(
     round(perceived_needTRUE, 2), " (",
     round(perceived_needTRUE - (se.perceived_needTRUE * 1.96), 2), ", ",

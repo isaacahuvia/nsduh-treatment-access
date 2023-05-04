@@ -25,6 +25,13 @@ design_unmet_need <- svydesign(ids = ~ 1,
 
 
 ####  Analysis  ####
+## Unmet need for the population
+svymean(~ unmet_need, design = design_unmet_need) %>%
+  as.data.frame() %>%
+  mutate(lower = mean - (SE * 1.96),
+         upper = mean + (SE * 1.96)) %>%
+  round(3)
+
 ## Unmet need by race alone
 # Table
 svyby(~ unmet_need, by = ~ race, design = design_unmet_need, FUN = svymean, na.rm = T) %>%

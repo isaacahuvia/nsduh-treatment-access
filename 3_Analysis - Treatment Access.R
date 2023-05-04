@@ -25,6 +25,13 @@ design_treatment_access <- svydesign(ids = ~ 1,
 
 
 ####  Analysis  ####
+## Treatment access for the population
+svymean(~ treatment_access, design = design_treatment_access) %>%
+  as.data.frame() %>%
+  mutate(lower = mean - (SE * 1.96),
+         upper = mean + (SE * 1.96)) %>%
+  round(3)
+
 ## Treatment access by race alone
 # Table
 svyby(~ treatment_access, by = ~ race, design = design_treatment_access, FUN = svymean, na.rm = T) %>%
