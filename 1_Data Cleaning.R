@@ -5,16 +5,16 @@ library(here)
 
 
 ## Load data
-load(here("Data", "NSDUH_2010.RData"))
-load(here("Data", "NSDUH_2011.RData"))
-load(here("Data", "NSDUH_2012.RData"))
-load(here("Data", "NSDUH_2013.RData"))
-load(here("Data", "NSDUH_2014.RData"))
-load(here("Data", "NSDUH_2015.RData"))
-load(here("Data", "NSDUH_2016.RData"))
-load(here("Data", "NSDUH_2017.RData"))
-load(here("Data", "NSDUH_2018.RData"))
-load(here("Data", "NSDUH_2019.RData"))
+load(here("Raw Data", "NSDUH_2010.RData"))
+load(here("Raw Data", "NSDUH_2011.RData"))
+load(here("Raw Data", "NSDUH_2012.RData"))
+load(here("Raw Data", "NSDUH_2013.RData"))
+load(here("Raw Data", "NSDUH_2014.RData"))
+load(here("Raw Data", "NSDUH_2015.RData"))
+load(here("Raw Data", "NSDUH_2016.RData"))
+load(here("Raw Data", "NSDUH_2017.RData"))
+load(here("Raw Data", "NSDUH_2018.RData"))
+load(here("Raw Data", "NSDUH_2019.RData"))
 
 
 
@@ -65,7 +65,6 @@ clean_data <- combined_data %>%
       AGE2 == 16 ~ 4,
       AGE2 == 17 ~ 5
     ),
-    age_squared = age ^ 2, # See 2_Analysis.R :)
     race = factor(NEWRACE2,
                   levels = c(1, 2, 3, 4, 5, 6, 7),
                   labels = c("White non-Hispanic",
@@ -80,4 +79,4 @@ clean_data <- combined_data %>%
 
 
 ####  Save data  ####
-saveRDS(clean_data, here("Data", "Clean Data.rds")) # .rds files are faster than .RData
+saveRDS(clean_data, here("Clean Data.rds")) # .rds files are faster than .RData
