@@ -117,3 +117,7 @@ perceived_need_by_race_by_age <- svyglm(formula = perceived_need ~ race + age + 
                                         design = design_perceived_need)
 custom_summary(perceived_need_by_race_by_age) %>% 
   print(n = 99)
+
+# Model comparison
+regTermTest(perceived_need_by_race_by_age, ~ race:age + race:age_squared, method = "Wald")
+anova(perceived_need_by_race_and_age, perceived_need_by_race_by_age, method = "LRT")

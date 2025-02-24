@@ -113,3 +113,7 @@ unmet_need_by_race_by_age <- svyglm(formula = unmet_need ~ race + age + race*age
                                     design = design_unmet_need)
 custom_summary(unmet_need_by_race_by_age) %>% 
   print(n = 99)
+
+# Model comparison
+regTermTest(unmet_need_by_race_by_age, ~ race:age, method = "Wald")
+anova(unmet_need_by_race_and_age, unmet_need_by_race_by_age, method = "LRT")

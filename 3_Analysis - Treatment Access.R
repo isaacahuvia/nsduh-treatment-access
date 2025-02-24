@@ -113,3 +113,7 @@ treatment_access_by_race_by_age <- svyglm(formula = treatment_access ~ race + ag
                                           design = design_treatment_access)
 custom_summary(treatment_access_by_race_by_age) %>% 
   print(n = 99)
+
+# Model comparison
+regTermTest(treatment_access_by_race_by_age, ~ race:age, method = "Wald")
+anova(treatment_access_by_race_and_age, treatment_access_by_race_by_age, method = "LRT")
